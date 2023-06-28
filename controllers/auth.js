@@ -5,20 +5,6 @@ const User = require('../models/User')
 const sgMail = require('@sendgrid/mail')
 
 module.exports = {
-    getIndex: (req, res) => {
-        try {
-            res.render('index')
-        } catch (error) {
-            console.log(error)
-        }
-    },
-    getElements: (req, res) => {
-        try {
-            res.render('uiElements')
-        } catch (error) {
-            console.log(error)
-        }
-    },
     getLogin: (req, res) => {
         try {
             if (req.user) {
@@ -27,6 +13,7 @@ module.exports = {
             res.render('login')
         } catch (error) {
             console.log(error)
+            res.redirect('/error')
         }
     },
     postLogin: (req, res, next) => {

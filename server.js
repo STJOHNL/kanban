@@ -8,7 +8,11 @@ const methodOverride = require('method-override')
 const flash = require('express-flash')
 const logger = require('morgan')
 const connectDB = require('./config/database')
+const noJoyRoutes = require('./routes/404')
 const mainRoutes = require('./routes/main')
+const authRoutes = require('./routes/auth')
+const errorRoutes = require('./routes/error')
+const dashboardRoutes = require('./routes/dashboard')
 
 require('dotenv').config({ path: './config/.env' })
 
@@ -42,6 +46,12 @@ app.use(passport.session())
 app.use(flash())
 
 app.use('/', mainRoutes)
+app.use('/auth', authRoutes)
+app.use('/error', errorRoutes)
+app.use('/dashboard', dashboardRoutes)
+
+// 404 routes need to be last
+app.use(noJoyRoutes)
 
 app.listen(process.env.PORT, () => {
     console.log('Server is running!')
