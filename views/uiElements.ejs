@@ -1,0 +1,45 @@
+<%- include('partials/header', { pageTitle: 'UI Elements' }) -%>
+
+    <h1>Heading 1</h1>
+    <h2>Heading 2</h2>
+    <h3>Heading 3</h3>
+    <h4>Heading 4</h4>
+    <h5>Heading 5</h5>
+    <h6>Heading 6</h6>
+    <p>Paragraph</p>
+    <button>Button</button>
+    <a href="#" class="btn">Button</a>
+    <a href="#">Anchor Tag</a>
+    <section class="box" style="height: 300px; width: 300px;">
+        <h2 class="box-title">Box Title</h2>
+        <section class="task-box">
+            <a href="" class="task-text">Task</a>
+            <section class="task-controls">
+                <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
+                <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
+            </section>
+        </section>
+        <section class="task-box">
+            <a href="" class="task-text">Task</a>
+            <section class="task-controls">
+                <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
+                <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
+            </section>
+        </section>
+    </section>
+    <form>
+        <label for="">Label</label>
+        <input type="text">
+        <input type="checkbox" name="" id="">
+        <input type="password" name="" id="">
+        <input type="datetime" name="" id="">
+        <input type="file">
+        <input type="radio" name="" id="">
+        <select value="">
+            <option name="" id="">Text 1</option>
+            <option name="" id="">Text 2</option>
+            <option name="" id="">Text 3</option>
+        </select>
+        <textarea name="" id=""></textarea>
+    </form>
+    <%- include('partials/footer') -%>

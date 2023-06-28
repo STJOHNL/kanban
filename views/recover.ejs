@@ -1,0 +1,22 @@
+<%- include('partials/header', { pageTitle: 'Forgot Password' }) -%>
+    <div>
+        <% if (locals.messages.errors) { %>
+            <% messages.errors.forEach( el=> { %>
+                <p class="error-text">
+                    <%= el.msg %>
+                </p>
+                <% })} if(locals.messages.info) {%>
+                    <% messages.info.forEach( el=> { %>
+                        <p class="error-text">
+                            <%= el.msg %>
+                        </p>
+                        <% })} %>
+    </div>
+
+
+    <h1>Forgot Password</h1>
+    <form action="/recover" method="POST">
+        <input type="email" name="email" placeholder="Email">
+        <button>Send Reset Link</button>
+    </form>
+    <%- include('partials/footer') -%>

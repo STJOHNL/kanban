@@ -1,6 +1,20 @@
+/* ================================================ */
+/* ================================================ */
+/* Global */
+/* ================================================ */
+/* ================================================ */
+
+
 * {
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
+    color: #050a30;
+    margin: 0;
+}
+
+html {
+    background-color: #e9edf0;
+    padding: 2% 4%;
 }
 
 h6,
@@ -11,15 +25,41 @@ h2,
 h1,
 th {
     font-family: 'Teko', sans-serif;
+    font-weight: 500;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+h3 {
+    font-size: 28px;
+}
+
+h4 {
+    font-size: 24px;
+}
+
+h5,
+th {
+    font-size: 20px;
+}
+
+h6 {
+    font-size: 16px;
 }
 
 button,
 .btn {
     background-color: transparent;
-    border: 3px solid #A60BEA;
+    border: 3px solid #a60bea;
     border-radius: 10px;
     padding: 15px 30px;
-    color: #A60BEA;
+    color: #a60bea;
     cursor: pointer;
     text-decoration: none;
     display: block;
@@ -27,6 +67,133 @@ button,
 }
 
 a {
-    color: #A60BEA;
+    color: #a60bea;
     text-decoration: none;
+}
+
+
+/* ================================================ */
+/* ================================================ */
+/* Box */
+/* ================================================ */
+/* ================================================ */
+
+
+.box {
+    background-color: #050a30;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.box-title {
+    color: #e9edf0;
+    background-color: #0f1e8c;
+    border-radius: 10px 10px 0 0;
+    padding: 15px 15px 10px;
+}
+
+
+/* ================================================ */
+/* ================================================ */
+/* Task box */
+/* ================================================ */
+/* ================================================ */
+
+
+.task-box {
+    padding: 15px;
+}
+
+.task-box:nth-of-type(even) {
+    background-color: #0a145e;
+}
+
+.task-text {
+    color: #e9edf0;
+}
+
+.task-text:hover {
+    color: #a60bea;
+}
+
+.task-controls {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.task-controls i {
+    color: #0bbfea;
+}
+
+.task-controls button {
+    padding: 0;
+    border: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.task-box:hover .task-controls button {
+    opacity: 1;
+}
+
+.task-controls i:hover {
+    color: #a60bea
+}
+
+
+/* ================================================ */
+/* ================================================ */
+/* Form */
+/* ================================================ */
+/* ================================================ */
+
+input {
+    font-size: 16px;
+    padding: 5px;
+    border: 2px solid #050a30;
+    border-radius: 5px;
+    background-color: #fafafa;
+    display: block;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid #a60bea;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    background-color: #fafafa;
+    accent-color: #a60bea;
+    height: 25px;
+    width: 25px;
+}
+
+select {
+    background-color: #fafafa;
+    border-radius: 5px;
+    border: 2px solid #050a30;
+    padding: 5px;
+}
+
+select:focus {
+    outline: none;
+    border: 2px solid #a60bea;
+    background-color: #fafafa;
+}
+
+textarea {
+    background-color: #fafafa;
+    border: 2px solid #050a30;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 5px;
+    min-height: 80px;
+}
+
+textarea:focus {
+    outline: none;
+    border: 2px solid #a60bea;
+    background-color: #fafafa;
 }

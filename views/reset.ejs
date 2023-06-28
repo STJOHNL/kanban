@@ -1,0 +1,23 @@
+<%- include('partials/header', { pageTitle: 'Reset Password' }) -%>
+    <div>
+        <% if (locals.messages.errors) { %>
+            <% messages.errors.forEach( el=> { %>
+                <p class="error-text">
+                    <%= el.msg %>
+                </p>
+                <% })} if(locals.messages.info) {%>
+                    <% messages.info.forEach( el=> { %>
+                        <p class="error-text">
+                            <%= el.msg %>
+                        </p>
+                        <% })} %>
+    </div>
+
+
+    <h1>Reset Password</h1>
+    <form action="" method="POST">
+        <input type="password" name="password" placeholder="New Password">
+        <input type="password" name="confirmPassword" placeholder="Confirm Password">
+        <button>Change Password</button>
+    </form>
+    <%- include('partials/footer') -%>
