@@ -51,7 +51,7 @@ module.exports = {
             console.log(error)
         }
     },
-    logout: (req, res, next) => {
+    signout: (req, res, next) => {
         try {
             // logout logic
 

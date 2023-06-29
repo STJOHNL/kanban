@@ -5,7 +5,7 @@ const authController = require('../controllers/auth')
 // Do not add any private routes
 router.get('/login', authController.getLogin)
 router.post('/login', authController.postLogin)
-router.get('/log-out', authController.logout)
+router.get('/sign-out', authController.signout)
 router.get('/sign-up', authController.getSignUp)
 router.post('/sign-up', authController.signUp)
 router.get('/recover', authController.getRecover)
