@@ -6,7 +6,7 @@
             <a href="">
                 <h2>Project Title</h2>
             </a>
-            <a href="">Add task</a>
+            <a id="openDialog">Add task</a>
         </section>
         <section class="box-container">
             <section class="box">
@@ -262,15 +262,35 @@
     <a href="#" class="btn">Create New Project</a>
 
 
-    <form action="">
-        <h2>Create Project</h2>
-    </form>
 
-    <form action="">
-        <h2>Add Task</h2>
-    </form>
+    <button id="updateForm">Update Create Project</button>
+
+    <dialog id="dialog">
+        <form action="">
+            <h2>Add Task</h2>
+            <label for="name">Task Name</label>
+            <input type="text">
+            <label for="description">Description</label>
+            <textarea name="description"></textarea>
+            <button>Add Task</button>
+            <button value="cancel" formmethod="dialog" class="dialog-close">Cancel</button>
+        </form>
+    </dialog>
 
     <form action="">
         <h2>Edit Task</h2>
     </form>
+    <script>
+        const openDialog = document.getElementById('openDialog')
+        const dialog = document.getElementById('dialog')
+        const closeDialog = document.getElementById('closeDialog')
+
+        openDialog.addEventListener('click', () => {
+            dialog.showModal()
+        })
+
+        closeDialog.addEventListener('click', () => {
+            dialog.closeModal()
+        })
+    </script>
     <%- include('partials/footer') -%>

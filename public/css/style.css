@@ -69,6 +69,14 @@ button,
 a {
     color: #a60bea;
     text-decoration: none;
+    cursor: pointer;
+}
+
+.button-icon {
+    padding: 0;
+    border: none;
+    outline: none;
+    display: block;
 }
 
 ::-webkit-scrollbar {
@@ -260,4 +268,43 @@ textarea:focus {
     outline: none;
     border: 2px solid #a60bea;
     background-color: #fafafa;
+}
+
+
+/* ================================================ */
+/* ================================================ */
+/* Pop up */
+/* ================================================ */
+/* ================================================ */
+
+#dialog::backdrop {
+    background: rgba(5, 10, 48, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#dialog {
+    outline: none;
+    border: none;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+#dialog h2,
+#dialog button {
+    text-align: center;
+    margin: auto;
+}
+
+.dialog-close {
+    border: none;
+    outline: none;
+    color: #777777;
 }
