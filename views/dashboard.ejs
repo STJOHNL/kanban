@@ -2,290 +2,234 @@
     <h1>Welcome, {{ name }}</h1>
     <h3>Thursday, June 29th</h3>
     <section class="main-container">
-        <section class="main-container-header">
-            <a href="">
-                <h2>Project Title</h2>
-            </a>
-            <a id="openDialog">Add task</a>
-        </section>
-        <section class="box-container">
-            <section class="box">
-                <h3 class="box-title">Box Title</h3>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
+        <% projects.forEach(project=> { %>
+            <section class="main-container-header">
+                <a href="">
+                    <h2>
+                        <%= project.name %>
+                    </h2>
+                </a>
+                <a onclick="openDialog('dialog-addTask')">Add task</a>
+                <dialog id="dialog-addTask">
+                    <form action="/task/create" method="POST">
+                        <h2>Add Task</h2>
+                        <label for="name">Task Name</label>
+                        <input type="text" name="name">
+                        <label for="description">Description</label>
+                        <textarea name="description"></textarea>
+                        <button>Add Task</button>
+                        <button value="cancel" formmethod="dialog" class="dialog-close">Cancel</button>
+                    </form>
+                </dialog>
+            </section>
+            <section class="box-container">
+                <section class="box">
+                    <h3 class="box-title">Backlog</h3>
+                    <% tasks.forEach(task=> { %>
+                        <% if(task.status==='Backlog' ) { %>
+                            <section class="task-box">
+                                <a onclick="openDialog('dialog-<%= task._id %>')" class="task-text">
+                                    <%= task.name %>
+                                </a>
+                                <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST" class="task-controls">
+                                    <button class="task-left" name="status" value="">
+                                        <i class="fa-solid fa-arrow-left"></i>
+                                    </button>
+                                    <button class="task-right" name="status" value="Design">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </form>
+                                <dialog id="dialog-<%= task._id %>">
+                                    <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST">
+                                        <h2>Edit Task</h2>
+                                        <label for="name">Task</label>
+                                        <input type="text">
+                                        <label for="description">Description</label>
+                                        <textarea name="description"></textarea>
+                                        <button>Update Task</button>
+                                        <button value="cancel" formmethod="dialog" class="dialog-close">Cancel</button>
+                                    </form>
+                                </dialog>
+                            </section>
+                            <% }}) %>
                 </section>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
+
+                <section class="box">
+                    <h3 class="box-title">Design</h3>
+                    <% tasks.forEach(task=> { %>
+                        <% if(task.status==='Design' ) { %>
+                            <section class="task-box">
+                                <a onclick="openDialog('dialog-<%= task._id %>')" class="task-text">
+                                    <%= task.name %>
+                                </a>
+                                <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST" class="task-controls">
+                                    <button class="task-left" name="status" value="Backlog">
+                                        <i class="fa-solid fa-arrow-left"></i>
+                                    </button>
+                                    <button class="task-right" name="status" value="Build">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </form>
+                                <dialog id="dialog-<%= task._id %>">
+                                    <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST">
+                                        <h2>Edit Task</h2>
+                                        <label for="name">Task</label>
+                                        <input type="text">
+                                        <label for="description">Description</label>
+                                        <textarea name="description"></textarea>
+                                        <button>Update Task</button>
+                                        <button value="cancel" formmethod="dialog" class="dialog-close">Cancel</button>
+                                    </form>
+                                </dialog>
+                            </section>
+                            <% }}) %>
                 </section>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
+
+                <section class="box">
+                    <h3 class="box-title">Build</h3>
+                    <% tasks.forEach(task=> { %>
+                        <% if(task.status==='Build' ) { %>
+                            <section class="task-box">
+                                <a onclick="openDialog('dialog-<%= task._id %>')" class="task-text">
+                                    <%= task.name %>
+                                </a>
+                                <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST" class="task-controls">
+                                    <button class="task-left" name="status" value="Design">
+                                        <i class="fa-solid fa-arrow-left"></i>
+                                    </button>
+                                    <button class="task-right" name="status" value="Test">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </form>
+                                <dialog id="dialog-<%= task._id %>">
+                                    <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST">
+                                        <h2>Edit Task</h2>
+                                        <label for="name">Task</label>
+                                        <input type="text">
+                                        <label for="description">Description</label>
+                                        <textarea name="description"></textarea>
+                                        <button>Update Task</button>
+                                        <button value="cancel" formmethod="dialog" class="dialog-close">Cancel</button>
+                                    </form>
+                                </dialog>
+                            </section>
+                            <% }}) %>
                 </section>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
+
+                <section class="box">
+                    <h3 class="box-title">Test</h3>
+                    <% tasks.forEach(task=> { %>
+                        <% if(task.status==='Test' ) { %>
+                            <section class="task-box">
+                                <a onclick="openDialog('dialog-<%= task._id %>')" class="task-text">
+                                    <%= task.name %>
+                                </a>
+                                <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST" class="task-controls">
+                                    <button class="task-left" name="status" value="Build">
+                                        <i class="fa-solid fa-arrow-left"></i>
+                                    </button>
+                                    <button class="task-right" name="status" value="Deploy">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </form>
+                                <dialog id="dialog-<%= task._id %>">
+                                    <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST">
+                                        <h2>Edit Task</h2>
+                                        <label for="name">Task</label>
+                                        <input type="text">
+                                        <label for="description">Description</label>
+                                        <textarea name="description"></textarea>
+                                        <button>Update Task</button>
+                                        <button value="cancel" formmethod="dialog" class="dialog-close">Cancel</button>
+                                    </form>
+                                </dialog>
+                            </section>
+                            <% }}) %>
                 </section>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
+
+                <section class="box">
+                    <h3 class="box-title">Deploy</h3>
+                    <% tasks.forEach(task=> { %>
+                        <% if(task.status==='Deploy' ) { %>
+                            <section class="task-box">
+                                <a onclick="openDialog('dialog-<%= task._id %>')" class="task-text">
+                                    <%= task.name %>
+                                </a>
+                                <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST" class="task-controls">
+                                    <button class="task-left" name="status" value="Test">
+                                        <i class="fa-solid fa-arrow-left"></i>
+                                    </button>
+                                    <button class="task-right" name="status" value="Maintain">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </form>
+                                <dialog id="dialog-<%= task._id %>">
+                                    <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST">
+                                        <h2>Edit Task</h2>
+                                        <label for="name">Task</label>
+                                        <input type="text">
+                                        <label for="description">Description</label>
+                                        <textarea name="description"></textarea>
+                                        <button>Update Task</button>
+                                        <button value="cancel" formmethod="dialog" class="dialog-close">Cancel</button>
+                                    </form>
+                                </dialog>
+                            </section>
+                            <% }}) %>
                 </section>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
+
+                <section class="box">
+                    <h3 class="box-title">Maintain</h3>
+                    <% tasks.forEach(task=> { %>
+                        <% if(task.status==='Maintain' ) { %>
+                            <section class="task-box">
+                                <a onclick="openDialog('dialog-<%= task._id %>')" class="task-text">
+                                    <%= task.name %>
+                                </a>
+                                <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST" class="task-controls">
+                                    <button class="task-left" name="status" value="Deploy">
+                                        <i class="fa-solid fa-arrow-left"></i>
+                                    </button>
+                                    <button class="task-right" name="status" value="">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </form>
+                                <dialog id="dialog-<%= task._id %>">
+                                    <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST">
+                                        <h2>Edit Task</h2>
+                                        <label for="name">Task</label>
+                                        <input type="text">
+                                        <label for="description">Description</label>
+                                        <textarea name="description"></textarea>
+                                        <button>Update Task</button>
+                                        <button value="cancel" formmethod="dialog" class="dialog-close">Cancel</button>
+                                    </form>
+                                </dialog>
+                            </section>
+                            <% }}) %>
                 </section>
             </section>
-            <section class="box">
-                <h2 class="box-title">Box Title</h2>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-            </section>
-            <section class="box">
-                <h2 class="box-title">Box Title</h2>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-            </section>
-            <section class="box">
-                <h2 class="box-title">Box Title</h2>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-            </section>
-            <section class="box">
-                <h2 class="box-title">Box Title</h2>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-            </section>
-            <section class="box">
-                <h2 class="box-title">Box Title</h2>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-            </section>
-            <section class="box">
-                <h2 class="box-title">Box Title</h2>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-            </section>
-        </section>
+            <% }) %>
     </section>
-    <section class="main-container">
-        <section class="main-container-header">
-            <a href="">
-                <h2>Project Title</h2>
-            </a>
-            <a href="">Add task</a>
-        </section>
-        <section class="box-container">
-            <section class="box">
-                <h3 class="box-title">Box Title</h3>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-            </section>
-            <section class="box">
-                <h2 class="box-title">Box Title</h2>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-            </section>
-            <section class="box">
-                <h2 class="box-title">Box Title</h2>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-            </section>
-            <section class="box">
-                <h2 class="box-title">Box Title</h2>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-            </section>
-            <section class="box">
-                <h2 class="box-title">Box Title</h2>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-            </section>
-            <section class="box">
-                <h2 class="box-title">Box Title</h2>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-            </section>
-            <section class="box">
-                <h2 class="box-title">Box Title</h2>
-                <section class="task-box">
-                    <a href="" class="task-text">Task</a>
-                    <section class="task-controls">
-                        <button class="task-left"><i class="fa-solid fa-arrow-left"></i></button>
-                        <button class="task-right"><i class="fa-solid fa-arrow-right"></i></button>
-                    </section>
-                </section>
-            </section>
-        </section>
-    </section>
-    <a href="#" class="btn">Create New Project</a>
 
+    <a class="btn" onclick="openDialog('dialog-createProject')">Create New Project</a>
 
-
-    <button id="updateForm">Update Create Project</button>
-
-    <dialog id="dialog">
-        <form action="" method="POST">
-            <h2>Add Task</h2>
-            <label for="name">Task Name</label>
-            <input type="text">
+    <dialog id="dialog-createProject">
+        <form action="/project/create" method="POST">
+            <h2>Create Project</h2>
+            <label for="name">Project Name</label>
+            <input type="text" name="name">
             <label for="description">Description</label>
             <textarea name="description"></textarea>
-            <button>Add Task</button>
+            <button>Add Project</button>
             <button value="cancel" formmethod="dialog" class="dialog-close">Cancel</button>
         </form>
     </dialog>
 
-    <form action="">
-        <h2>Edit Task</h2>
-    </form>
     <script>
-        const openDialog = document.getElementById('openDialog')
-        const dialog = document.getElementById('dialog')
-
-        openDialog.addEventListener('click', () => {
-            dialog.showModal()
-        })
+        let openDialog = (dialog) => {
+            let modal = document.getElementById(dialog)
+            modal.showModal()
+        }
     </script>
     <%- include('partials/footer') -%>

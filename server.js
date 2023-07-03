@@ -16,6 +16,7 @@ const accountRoutes = require('./routes/account')
 const dashboardRoutes = require('./routes/dashboard')
 const taskRoutes = require('./routes/task')
 const companyRoutes = require('./routes/company')
+const projectRoutes = require('./routes/project')
 
 require('dotenv').config({ path: './config/.env' })
 
@@ -55,6 +56,7 @@ app.use('/account', accountRoutes)
 app.use('/dashboard', dashboardRoutes)
 app.use('/task', taskRoutes)
 app.use('/company', companyRoutes)
+app.use('/project', projectRoutes)
 
 // 404 routes need to be last
 app.use(noJoyRoutes)

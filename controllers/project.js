@@ -1,5 +1,5 @@
 const User = require('../models/User')
-const Task = require('../models/Task')
+const Project = require('../models/Project')
 
 module.exports = {
     // getTasks: async (req, res) => {
@@ -12,12 +12,11 @@ module.exports = {
     //         console.log(error)
     //     }
     // },
-    createTask: async (req, res) => {
+    createProject: async (req, res) => {
         try {
-            const task = await Task.create({
+            const project = await Project.create({
                 name: req.body.name,
                 description: req.body.description,
-                status: 'Backlog',
                 company: req.body.company || req.user.company
             })
 
@@ -26,12 +25,11 @@ module.exports = {
             console.log(error)
         }
     },
-    editTask: async (req, res) => {
+    editProject: async (req, res) => {
         try {
-            const task = await Task.findByIdAndUpdate(req.params.id, {
+            const project = await Project.findByIdAndUpdate(req.params.id, {
                 name: req.body.name,
                 description: req.body.description,
-                status: req.body.status,
                 company: req.body.company || req.user.company
             })
             res.redirect('/dashboard')
