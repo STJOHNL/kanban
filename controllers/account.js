@@ -14,6 +14,7 @@ module.exports = {
             })
         } catch (error) {
             console.log(error)
+            res.redirect('/error')
         }
     },
     getAccount: async (req, res) => {
@@ -26,6 +27,7 @@ module.exports = {
             })
         } catch (error) {
             console.log(error)
+            res.redirect('/error')
         }
     },
     editAccount: async (req, res) => {
@@ -42,6 +44,7 @@ module.exports = {
             res.redirect(`/account/${req.params.id}`)
         } catch (error) {
             console.log(error)
+            res.redirect('/error')
         }
     }
 }

@@ -10,6 +10,7 @@ module.exports = {
     //         })
     //     } catch (error) {
     //         console.log(error)
+    //         res.redirect('/error')
     //     }
     // },
     createProject: async (req, res) => {
@@ -23,6 +24,7 @@ module.exports = {
             res.redirect('/dashboard')
         } catch (error) {
             console.log(error)
+            res.redirect('/error')
         }
     },
     editProject: async (req, res) => {
@@ -35,6 +37,7 @@ module.exports = {
             res.redirect('/dashboard')
         } catch (error) {
             console.log(error)
+            res.redirect('/error')
         }
     }
 }

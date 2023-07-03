@@ -1,5 +1,6 @@
 <%- include('partials/header', { pageTitle: 'Dashboard' }) -%>
-    <h1>Welcome, {{ name }}</h1>
+    <h1>Welcome, <%= user.fName %>!
+    </h1>
     <h3>Thursday, June 29th</h3>
     <section class="main-container">
         <% projects.forEach(project=> { %>
@@ -13,6 +14,7 @@
                 <dialog id="dialog-addTask">
                     <form action="/task/create" method="POST">
                         <h2>Add Task</h2>
+                        <input type="text" name="project" hidden value="<%= project.id %>">
                         <label for="name">Task Name</label>
                         <input type="text" name="name">
                         <label for="description">Description</label>
@@ -25,7 +27,7 @@
             <section class="box-container">
                 <section class="box">
                     <h3 class="box-title">Backlog</h3>
-                    <% tasks.forEach(task=> { %>
+                    <% project.tasks.forEach(task=> { %>
                         <% if(task.status==='Backlog' ) { %>
                             <section class="task-box">
                                 <a onclick="openDialog('dialog-<%= task._id %>')" class="task-text">
@@ -43,7 +45,7 @@
                                     <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST">
                                         <h2>Edit Task</h2>
                                         <label for="name">Task</label>
-                                        <input type="text">
+                                        <input type="text" name="name" value="<%= task.name %>">
                                         <label for="description">Description</label>
                                         <textarea name="description"></textarea>
                                         <button>Update Task</button>
@@ -56,7 +58,7 @@
 
                 <section class="box">
                     <h3 class="box-title">Design</h3>
-                    <% tasks.forEach(task=> { %>
+                    <% project.tasks.forEach(task=> { %>
                         <% if(task.status==='Design' ) { %>
                             <section class="task-box">
                                 <a onclick="openDialog('dialog-<%= task._id %>')" class="task-text">
@@ -74,7 +76,7 @@
                                     <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST">
                                         <h2>Edit Task</h2>
                                         <label for="name">Task</label>
-                                        <input type="text">
+                                        <input type="text" name="name" value="<%= task.name %>">
                                         <label for="description">Description</label>
                                         <textarea name="description"></textarea>
                                         <button>Update Task</button>
@@ -87,7 +89,7 @@
 
                 <section class="box">
                     <h3 class="box-title">Build</h3>
-                    <% tasks.forEach(task=> { %>
+                    <% project.tasks.forEach(task=> { %>
                         <% if(task.status==='Build' ) { %>
                             <section class="task-box">
                                 <a onclick="openDialog('dialog-<%= task._id %>')" class="task-text">
@@ -105,7 +107,7 @@
                                     <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST">
                                         <h2>Edit Task</h2>
                                         <label for="name">Task</label>
-                                        <input type="text">
+                                        <input type="text" name="name" value="<%= task.name %>">
                                         <label for="description">Description</label>
                                         <textarea name="description"></textarea>
                                         <button>Update Task</button>
@@ -118,7 +120,7 @@
 
                 <section class="box">
                     <h3 class="box-title">Test</h3>
-                    <% tasks.forEach(task=> { %>
+                    <% project.tasks.forEach(task=> { %>
                         <% if(task.status==='Test' ) { %>
                             <section class="task-box">
                                 <a onclick="openDialog('dialog-<%= task._id %>')" class="task-text">
@@ -136,7 +138,7 @@
                                     <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST">
                                         <h2>Edit Task</h2>
                                         <label for="name">Task</label>
-                                        <input type="text">
+                                        <input type="text" name="name" value="<%= task.name %>">
                                         <label for="description">Description</label>
                                         <textarea name="description"></textarea>
                                         <button>Update Task</button>
@@ -149,7 +151,7 @@
 
                 <section class="box">
                     <h3 class="box-title">Deploy</h3>
-                    <% tasks.forEach(task=> { %>
+                    <% project.tasks.forEach(task=> { %>
                         <% if(task.status==='Deploy' ) { %>
                             <section class="task-box">
                                 <a onclick="openDialog('dialog-<%= task._id %>')" class="task-text">
@@ -167,7 +169,7 @@
                                     <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST">
                                         <h2>Edit Task</h2>
                                         <label for="name">Task</label>
-                                        <input type="text">
+                                        <input type="text" name="name" value="<%= task.name %>">
                                         <label for="description">Description</label>
                                         <textarea name="description"></textarea>
                                         <button>Update Task</button>
@@ -180,7 +182,7 @@
 
                 <section class="box">
                     <h3 class="box-title">Maintain</h3>
-                    <% tasks.forEach(task=> { %>
+                    <% project.tasks.forEach(task=> { %>
                         <% if(task.status==='Maintain' ) { %>
                             <section class="task-box">
                                 <a onclick="openDialog('dialog-<%= task._id %>')" class="task-text">
@@ -198,7 +200,7 @@
                                     <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST">
                                         <h2>Edit Task</h2>
                                         <label for="name">Task</label>
-                                        <input type="text">
+                                        <input type="text" name="name" value="<%= task.name %>">
                                         <label for="description">Description</label>
                                         <textarea name="description"></textarea>
                                         <button>Update Task</button>

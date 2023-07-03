@@ -5,16 +5,22 @@ const Task = require('../models/Task')
 module.exports = {
     getDashboard: async (req, res) => {
         try {
-            const user = await User.findById(req.user.id)
-            const projects = await Project.find()
-            const tasks = await Task.find()
-            res.render('dashboard', {
-                user,
-                projects,
-                tasks
-            })
+            const user = await User.findById(req.user.id).populate(['company'])
+
+            const company = user.company?._id || undefined
+
+            if (!company) {
+                res.redirect('/company/create')
+            } else {
+                const projects = await Project.find({ company: company }).populate(['tasks'])
+                res.render('dashboard', {
+                    user,
+                    projects
+                })
+            }
         } catch (error) {
             console.log(error)
+            res.redirect('/error')
         }
     }
 }

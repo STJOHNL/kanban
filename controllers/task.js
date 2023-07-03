@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const Task = require('../models/Task')
+const Project = require('../models/Project')
 
 module.exports = {
     // getTasks: async (req, res) => {
@@ -10,6 +11,7 @@ module.exports = {
     //         })
     //     } catch (error) {
     //         console.log(error)
+    //          res.redirect('/error')
     //     }
     // },
     createTask: async (req, res) => {
@@ -21,9 +23,13 @@ module.exports = {
                 company: req.body.company || req.user.company
             })
 
+            const project = await Project.findByIdAndUpdate(req.body.project,
+                { $push: { tasks: task._id } })
+
             res.redirect('/dashboard')
         } catch (error) {
             console.log(error)
+            res.redirect('/error')
         }
     },
     editTask: async (req, res) => {
@@ -37,6 +43,7 @@ module.exports = {
             res.redirect('/dashboard')
         } catch (error) {
             console.log(error)
+            res.redirect('/error')
         }
     }
 }

@@ -4,6 +4,7 @@ module.exports = {
             res.render('index')
         } catch (error) {
             console.log(error)
+            res.redirect('/error')
         }
     },
     getElements: (req, res) => {
@@ -11,6 +12,7 @@ module.exports = {
             res.render('uiElements')
         } catch (error) {
             console.log(error)
+            res.redirect('/error')
         }
     }
 }

@@ -3,6 +3,7 @@ const validator = require('validator')
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const sgMail = require('@sendgrid/mail')
+const Company = require('../models/Company')
 
 module.exports = {
     getLogin: (req, res) => {
@@ -71,6 +72,7 @@ module.exports = {
             })
         } catch (error) {
             console.log(error)
+            res.redirect('/error')
         }
     },
     getSignUp: (req, res) => {
@@ -78,6 +80,7 @@ module.exports = {
             res.render('signup')
         } catch (error) {
             console.log(error)
+            res.redirect('/error')
         }
     },
     getRecover: (req, res) => {
@@ -131,6 +134,7 @@ module.exports = {
             res.render('reset', { user })
         } catch (error) {
             console.log(error)
+            res.redirect('/error')
         }
     },
     resetPassword: async (req, res) => {
@@ -205,13 +209,12 @@ module.exports = {
                 password: req.body.password
             });
 
-            const existingUser = await User.findOne({ email: req.body.email });
+            const existingUser = await User.findOne({ email: req.body.email })
 
             if (existingUser) {
-                req.flash('errors', { msg: 'Account with that email address or username already exists.' });
+                req.flash('errors', { msg: 'Account with that email address already exists.' });
                 return res.redirect('/auth/sign-up');
-            }
-            else {
+            } else {
                 await user.save();
                 req.logIn(user, (err) => {
                     if (err) {
