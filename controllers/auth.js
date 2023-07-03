@@ -201,7 +201,7 @@ module.exports = {
                 lName: req.body.lName,
                 email: req.body.email,
                 phone: req.body.phone,
-                company: req.body.company,
+                role: 'Client',
                 password: req.body.password
             });
 

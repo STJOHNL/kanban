@@ -266,7 +266,7 @@
     <button id="updateForm">Update Create Project</button>
 
     <dialog id="dialog">
-        <form action="">
+        <form action="" method="POST">
             <h2>Add Task</h2>
             <label for="name">Task Name</label>
             <input type="text">
@@ -283,14 +283,9 @@
     <script>
         const openDialog = document.getElementById('openDialog')
         const dialog = document.getElementById('dialog')
-        const closeDialog = document.getElementById('closeDialog')
 
         openDialog.addEventListener('click', () => {
             dialog.showModal()
-        })
-
-        closeDialog.addEventListener('click', () => {
-            dialog.closeModal()
         })
     </script>
     <%- include('partials/footer') -%>

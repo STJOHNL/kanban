@@ -1,4 +1,4 @@
-<%- include('partials/header', { pageTitle: 'Reset Password' }) -%>
+<%- include('partials/loggedOutHeader', { pageTitle: 'Reset Password' }) -%>
     <div>
         <% if (locals.messages.errors) { %>
             <% messages.errors.forEach( el=> { %>

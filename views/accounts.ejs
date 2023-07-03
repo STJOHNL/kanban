@@ -1,0 +1,35 @@
+<%- include('partials/header', { pageTitle: 'Accounts' }) -%>
+
+    <% users.forEach(user=> { %>
+        <a href="/account/<%= user._id %>">
+            <%= user.fName %>
+        </a>
+        <form action="/account/<%= user._id %>?_method=PUT" method="POST">
+
+            <input type="text" name="fName" placeholder="First Name" value="<%= user.fName%>" required>
+            <input type="text" name="lName" placeholder="Last Name" value="<%= user.lName%>" required>
+            <input type="email" name="email" placeholder="Email" value="<%= user.email%>" required>
+            <input type="phone" name="phone" placeholder="Phone" value="<%= user.phone%>" required>
+            <select name="role" required>
+                <option value="<%= user?.role %>">
+                    <%= user?.role %>
+                </option>
+                <option value="Client">Client</option>
+                <option value="Admin">Admin</option>
+                <option value="Super Admin">Super Admin</option>
+            </select>
+            <select name="company" required>
+                <option value="<%= user?.company?.name %>">
+                    <%= user?.company?.name %>
+                </option>
+                <% companies.forEach(company=> { %>
+                    <option value="<%= company._id %>">
+                        <%= company.name %>
+                    </option>
+                    <% }) %>
+            </select>
+            <button>Update Profile</button>
+        </form>
+        <% }) %>
+
+            <%- include('partials/footer') -%>

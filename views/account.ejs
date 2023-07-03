@@ -1,0 +1,12 @@
+<%- include('partials/header', { pageTitle: 'Add Company' }) -%>
+
+    <form action="/account/<%= user._id %>?_method=PUT" method="POST">
+        <h2>Account</h2>
+        <input type="text" name="fName" placeholder="First Name" value="<%= user.fName%>" required>
+        <input type="text" name="lName" placeholder="Last Name" value="<%= user.lName%>" required>
+        <input type="email" name="email" placeholder="Email" value="<%= user.email%>" required>
+        <input type="phone" name="phone" placeholder="Phone" value="<%= user.phone%>" required>
+        <button>Update My Profile</button>
+    </form>
+
+    <%- include('partials/footer') -%>

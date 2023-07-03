@@ -12,7 +12,11 @@ const UserSchema = new mongoose.Schema({
     fName: String,
     lName: String,
     phone: String,
-    company: String,
+    company: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Company'
+    },
+    role: String,
     resetPasswordToken: String,
     resetPasswordExpires: Date
 }, { timestamps: true })

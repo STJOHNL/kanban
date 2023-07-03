@@ -1,0 +1,10 @@
+<%- include('partials/header', { pageTitle: 'Add Company' }) -%>
+
+    <form action="/company/create" method="POST">
+        <h2>Add Company</h2>
+        <label for="name">Company Name</label>
+        <input type="text" name="name">
+        <button>Add Company</button>
+    </form>
+
+    <%- include('partials/footer') -%>

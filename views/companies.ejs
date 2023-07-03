@@ -1,0 +1,9 @@
+<%- include('partials/header', { pageTitle: 'Add Company' }) -%>
+
+    <% companies.forEach(company=> { %>
+        <a href="/company/edit/<%= company._id %>">
+            <%= company.name %>
+        </a>
+        <% }) %>
+
+            <%- include('partials/footer') -%>
