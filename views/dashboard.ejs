@@ -1,9 +1,12 @@
 <%- include('partials/header', { pageTitle: 'Dashboard' }) -%>
     <h1>Welcome, <%= user.fName %>!
     </h1>
-    <h3>Thursday, June 29th</h3>
-    <section class="main-container">
-        <% projects.forEach(project=> { %>
+    <h3>
+        <%= date.toLocaleDateString('en-US',{ weekday: 'long' , year: 'numeric' , month: 'long' , day: 'numeric' }) %>
+    </h3>
+
+    <% projects.forEach(project=> { %>
+        <section class="main-container">
             <section class="main-container-header">
                 <a href="">
                     <h2>
@@ -24,20 +27,23 @@
                     </form>
                 </dialog>
             </section>
+            <!-- First Column -->
             <section class="box-container">
                 <section class="box">
-                    <h3 class="box-title">Backlog</h3>
+                    <h3 class="box-title">
+                        <%= project.columns[0] %>
+                    </h3>
                     <% project.tasks.forEach(task=> { %>
-                        <% if(task.status==='Backlog' ) { %>
+                        <% if(task.status===0) { %>
                             <section class="task-box">
                                 <a onclick="openDialog('dialog-<%= task._id %>')" class="task-text">
                                     <%= task.name %>
                                 </a>
                                 <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST" class="task-controls">
-                                    <button class="task-left" name="status" value="">
+                                    <button class="task-left" name="status" value="0">
                                         <i class="fa-solid fa-arrow-left"></i>
                                     </button>
-                                    <button class="task-right" name="status" value="Design">
+                                    <button class="task-right" name="status" value="1">
                                         <i class="fa-solid fa-arrow-right"></i>
                                     </button>
                                 </form>
@@ -55,20 +61,22 @@
                             </section>
                             <% }}) %>
                 </section>
-
+                <!-- Second Column -->
                 <section class="box">
-                    <h3 class="box-title">Design</h3>
+                    <h3 class="box-title">
+                        <%= project.columns[1] %>
+                    </h3>
                     <% project.tasks.forEach(task=> { %>
-                        <% if(task.status==='Design' ) { %>
+                        <% if(task.status===1) { %>
                             <section class="task-box">
                                 <a onclick="openDialog('dialog-<%= task._id %>')" class="task-text">
                                     <%= task.name %>
                                 </a>
                                 <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST" class="task-controls">
-                                    <button class="task-left" name="status" value="Backlog">
+                                    <button class="task-left" name="status" value="0">
                                         <i class="fa-solid fa-arrow-left"></i>
                                     </button>
-                                    <button class="task-right" name="status" value="Build">
+                                    <button class="task-right" name="status" value="2">
                                         <i class="fa-solid fa-arrow-right"></i>
                                     </button>
                                 </form>
@@ -86,20 +94,22 @@
                             </section>
                             <% }}) %>
                 </section>
-
+                <!-- Third Column -->
                 <section class="box">
-                    <h3 class="box-title">Build</h3>
+                    <h3 class="box-title">
+                        <%= project.columns[2] %>
+                    </h3>
                     <% project.tasks.forEach(task=> { %>
-                        <% if(task.status==='Build' ) { %>
+                        <% if(task.status===2) { %>
                             <section class="task-box">
                                 <a onclick="openDialog('dialog-<%= task._id %>')" class="task-text">
                                     <%= task.name %>
                                 </a>
                                 <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST" class="task-controls">
-                                    <button class="task-left" name="status" value="Design">
+                                    <button class="task-left" name="status" value="1">
                                         <i class="fa-solid fa-arrow-left"></i>
                                     </button>
-                                    <button class="task-right" name="status" value="Test">
+                                    <button class="task-right" name="status" value="3">
                                         <i class="fa-solid fa-arrow-right"></i>
                                     </button>
                                 </form>
@@ -117,20 +127,22 @@
                             </section>
                             <% }}) %>
                 </section>
-
+                <!-- Fourth Column -->
                 <section class="box">
-                    <h3 class="box-title">Test</h3>
+                    <h3 class="box-title">
+                        <%= project.columns[3] %>
+                    </h3>
                     <% project.tasks.forEach(task=> { %>
-                        <% if(task.status==='Test' ) { %>
+                        <% if(task.status===3) { %>
                             <section class="task-box">
                                 <a onclick="openDialog('dialog-<%= task._id %>')" class="task-text">
                                     <%= task.name %>
                                 </a>
                                 <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST" class="task-controls">
-                                    <button class="task-left" name="status" value="Build">
+                                    <button class="task-left" name="status" value="2">
                                         <i class="fa-solid fa-arrow-left"></i>
                                     </button>
-                                    <button class="task-right" name="status" value="Deploy">
+                                    <button class="task-right" name="status" value="4">
                                         <i class="fa-solid fa-arrow-right"></i>
                                     </button>
                                 </form>
@@ -148,51 +160,22 @@
                             </section>
                             <% }}) %>
                 </section>
-
+                <!-- Fifth Column -->
                 <section class="box">
-                    <h3 class="box-title">Deploy</h3>
+                    <h3 class="box-title">
+                        <%= project.columns[4] %>
+                    </h3>
                     <% project.tasks.forEach(task=> { %>
-                        <% if(task.status==='Deploy' ) { %>
+                        <% if(task.status===4) { %>
                             <section class="task-box">
                                 <a onclick="openDialog('dialog-<%= task._id %>')" class="task-text">
                                     <%= task.name %>
                                 </a>
                                 <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST" class="task-controls">
-                                    <button class="task-left" name="status" value="Test">
+                                    <button class="task-left" name="status" value="3">
                                         <i class="fa-solid fa-arrow-left"></i>
                                     </button>
-                                    <button class="task-right" name="status" value="Maintain">
-                                        <i class="fa-solid fa-arrow-right"></i>
-                                    </button>
-                                </form>
-                                <dialog id="dialog-<%= task._id %>">
-                                    <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST">
-                                        <h2>Edit Task</h2>
-                                        <label for="name">Task</label>
-                                        <input type="text" name="name" value="<%= task.name %>">
-                                        <label for="description">Description</label>
-                                        <textarea name="description"></textarea>
-                                        <button>Update Task</button>
-                                        <button value="cancel" formmethod="dialog" class="dialog-close">Cancel</button>
-                                    </form>
-                                </dialog>
-                            </section>
-                            <% }}) %>
-                </section>
-
-                <section class="box">
-                    <h3 class="box-title">Maintain</h3>
-                    <% project.tasks.forEach(task=> { %>
-                        <% if(task.status==='Maintain' ) { %>
-                            <section class="task-box">
-                                <a onclick="openDialog('dialog-<%= task._id %>')" class="task-text">
-                                    <%= task.name %>
-                                </a>
-                                <form action="/task/edit/<%= task._id %>?_method=PUT" method="POST" class="task-controls">
-                                    <button class="task-left" name="status" value="Deploy">
-                                        <i class="fa-solid fa-arrow-left"></i>
-                                    </button>
-                                    <button class="task-right" name="status" value="">
+                                    <button class="task-right" name="status" value="4">
                                         <i class="fa-solid fa-arrow-right"></i>
                                     </button>
                                 </form>
@@ -211,27 +194,33 @@
                             <% }}) %>
                 </section>
             </section>
-            <% }) %>
-    </section>
+        </section>
+        <% }) %>
 
-    <a class="btn" onclick="openDialog('dialog-createProject')">Create New Project</a>
 
-    <dialog id="dialog-createProject">
-        <form action="/project/create" method="POST">
-            <h2>Create Project</h2>
-            <label for="name">Project Name</label>
-            <input type="text" name="name">
-            <label for="description">Description</label>
-            <textarea name="description"></textarea>
-            <button>Add Project</button>
-            <button value="cancel" formmethod="dialog" class="dialog-close">Cancel</button>
-        </form>
-    </dialog>
+            <a class="btn" onclick="openDialog('dialog-createProject')">Create New Project</a>
 
-    <script>
-        let openDialog = (dialog) => {
-            let modal = document.getElementById(dialog)
-            modal.showModal()
-        }
-    </script>
-    <%- include('partials/footer') -%>
+            <dialog id="dialog-createProject" class="dialog">
+                <form action="/project/create" method="POST">
+                    <h2>Create Project</h2>
+                    <label for="name">Project Name</label>
+                    <input type="text" name="name">
+                    <label for="description">Description</label>
+                    <textarea name="description"></textarea>
+                    <input type="text" name="columns" placeholder="Column 1">
+                    <input type="text" name="columns" placeholder="Column 2">
+                    <input type="text" name="columns" placeholder="Column 3">
+                    <input type="text" name="columns" placeholder="Column 4">
+                    <input type="text" name="columns" placeholder="Column 5">
+                    <button>Add Project</button>
+                    <button value="cancel" formmethod="dialog" class="dialog-close">Cancel</button>
+                </form>
+            </dialog>
+
+            <script>
+                let openDialog = (dialog) => {
+                    let modal = document.getElementById(dialog)
+                    modal.showModal()
+                }
+            </script>
+            <%- include('partials/footer') -%>

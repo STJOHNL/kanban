@@ -6,16 +6,18 @@ module.exports = {
     getDashboard: async (req, res) => {
         try {
             const user = await User.findById(req.user.id).populate(['company'])
-
             const company = user.company?._id || undefined
+            let date = new Date()
 
             if (!company) {
                 res.redirect('/company/create')
             } else {
                 const projects = await Project.find({ company: company }).populate(['tasks'])
+
                 res.render('dashboard', {
                     user,
-                    projects
+                    projects,
+                    date
                 })
             }
         } catch (error) {

@@ -129,7 +129,7 @@ a {
     border-radius: 10px;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     width: 25%;
-    max-height: 70vh;
+    height: 70vh;
     flex-shrink: 0;
     overflow-y: scroll;
 }
@@ -277,7 +277,7 @@ textarea:focus {
 /* ================================================ */
 /* ================================================ */
 
-#dialog::backdrop {
+dialog::backdrop {
     background: rgba(5, 10, 48, 0.2);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -289,7 +289,7 @@ textarea:focus {
     padding: 0;
 }
 
-#dialog {
+dialog {
     outline: none;
     border: none;
     margin: auto;
@@ -297,8 +297,8 @@ textarea:focus {
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
-#dialog h2,
-#dialog button {
+dialog h2,
+dialog button {
     text-align: center;
     margin: auto;
 }

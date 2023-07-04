@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const ProjectSchema = new mongoose.Schema({
     name: String,
     description: String,
+    columns: [String],
     company: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Company'

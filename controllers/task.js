@@ -19,7 +19,7 @@ module.exports = {
             const task = await Task.create({
                 name: req.body.name,
                 description: req.body.description,
-                status: 'Backlog',
+                status: 0,
                 company: req.body.company || req.user.company
             })
 

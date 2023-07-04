@@ -18,9 +18,10 @@ module.exports = {
             const project = await Project.create({
                 name: req.body.name,
                 description: req.body.description,
-                company: req.body.company || req.user.company
+                company: req.body.company || req.user.company,
+                columns: req.body.columns
             })
-
+            console.log(req.body)
             res.redirect('/dashboard')
         } catch (error) {
             console.log(error)
@@ -32,7 +33,8 @@ module.exports = {
             const project = await Project.findByIdAndUpdate(req.params.id, {
                 name: req.body.name,
                 description: req.body.description,
-                company: req.body.company || req.user.company
+                company: req.body.company || req.user.company,
+                columns: req.body.columns
             })
             res.redirect('/dashboard')
         } catch (error) {
